@@ -1,12 +1,24 @@
-T = int(input())
+import java.util.Scanner;
 
-for tc in range(1, T + 1):
-    N = int(input())
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-    cnt = 0
-    for i in range(-N, N+1):
-        for j in range(-N, N+1):
-            if (i*i) + (j*j) <= (N*N):
-                cnt += 1
+        int T = sc.nextInt();
 
-    print(f'#{tc} {cnt}')
+        for (int t = 1; t <= T; t++) {
+            int r = sc.nextInt();
+            int cnt = 0;
+            for (int i = 0; i <= r; i++) {
+                for (int j = 1; j <= r; j++) {
+                    if ((i*i) + (j*j) <= (r*r)) {
+                        cnt++;
+                    }
+                }
+            }
+            cnt = cnt * 4;
+            cnt++;
+            System.out.printf("#%d %d\n", t, cnt);
+        }
+    }
+}
