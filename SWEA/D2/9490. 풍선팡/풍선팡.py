@@ -1,18 +1,13 @@
-def boom(x, y, ran):
-    global list_
-    global M
-    global N
-
-    cnt = -list_[x][y]
-    for dx in range(x-ran, x+ran+1):
-        if dx < 0 or dx >= N:
-            continue
-        cnt += list_[dx][y]
+def boom(y, x, ran):
+    cnt = 0
     for dy in range(y-ran, y+ran+1):
-        if dy < 0 or dy >= M:
-            continue
-        cnt += list_[x][dy]
+        if 0 <= dy < N:
+            cnt += list_[dy][x]
+    for dx in range(x-ran, x+ran+1):
+        if 0 <= dx < M:
+            cnt += list_[y][dx]
 
+    cnt -= list_[y][x]
     return cnt
 
 
