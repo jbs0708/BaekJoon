@@ -6,6 +6,7 @@ for tc in range(1, T+1):
     list_ = [list(input()) for _ in range(8)]
 
     cnt = 0
+
     for y in range(8):
         for x in range(8 - N + 1):
             found = True
