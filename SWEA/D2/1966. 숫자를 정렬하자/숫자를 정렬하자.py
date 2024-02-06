@@ -1,5 +1,3 @@
-# 선택정렬로 풀기
-
 def selection_sort(a, N):
     for i in range(N-1):
         min_idx = i
