@@ -1,5 +1,6 @@
 from collections import deque
 
+
 T = 10
 
 for tc in range(1, T + 1):
@@ -14,19 +15,19 @@ for tc in range(1, T + 1):
     q = deque()
     q.append(graph[S])
 
-    v = 0
-    max_ = -1
+    level = 0
+    max_ = 0
     v_max = 0
     while q:
-        v += 1
+        level += 1
         q_list = q.popleft()
         temp = []
         for i in q_list:
             if visited[i] == 0:
-                if v_max < v:
+                if v_max < level:
                     max_ = 0
-                    v_max = v
-                visited[i] = v
+                    v_max = level
+                visited[i] = level
                 max_ = max(max_, i)
                 temp += graph[i]
         if temp:
