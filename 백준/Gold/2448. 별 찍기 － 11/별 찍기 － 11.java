@@ -1,42 +1,43 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-// 별 찍기 - 11
 public class Main {
-	static char[][] stars;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
+    public  static char[][] arr;
 
-		stars = new char[N][N * 2 - 1]; // 꼭대기 별이 (0,N-1)에 찍힘
-		for (int i = 0; i < N; i++) {
-			Arrays.fill(stars[i], ' '); // 공백으로 채움
-		}
-		
-		star(0, N-1, N);
-		
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < 2 * N - 1; j++) {
-				sb.append(stars[i][j]);
-			}
-			sb.append('\n');
-		}
-		System.out.println(sb);
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
 
-	public static void star(int r, int c, int N) {
-		if (N == 3) { // k=0인 가장 작은 삼각형일 때 별찍기
-			stars[r][c] = '*';
-			stars[r + 1][c - 1] = stars[r + 1][c + 1] = '*';
-			stars[r + 2][c - 2] = stars[r + 2][c - 1] = stars[r + 2][c] = stars[r + 2][c + 1] = stars[r + 2][c + 2] = '*';
-			return;
-		} else { // 큰 삼각형 세개로 다시 쪼갬
-			int cut = N / 2;
-			star(r, c, cut); // 제일 위에 삼각형
-			star(r + cut, c - cut, cut); // 아래 왼쪽 삼각형
-			star(r + cut, c + cut, cut); // 아래 오른쪽 삼각형
-		}
-	}
+        arr = new char[k][2*k-1];
+        for (int i = 0; i < k; i++) {
+            Arrays.fill(arr[i], ' ');
+        }
+
+        tri(0, k-1, k);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < 2*k-1; j++) {
+                sb.append(arr[i][j]);
+            }
+            sb.append("\n");
+        }
+
+        System.out.println(sb);
+    }
+
+    public static void tri(int y, int x, int n) {
+        if (n == 3) {
+            arr[y][x] = '*';
+            arr[y+1][x-1] = arr[y+1][x+1] = '*';
+            arr[y + 2][x - 2] = arr[y + 2][x - 1] = arr[y + 2][x] = arr[y + 2][x + 1] = arr[y + 2][x + 2] = '*';
+            return;
+        }
+
+        tri(y, x, n/2);
+        tri(y + n/2, x - n/2, n/2);
+        tri(y + n/2, x + n/2, n/2);
+
+    }
 }
